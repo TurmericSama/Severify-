@@ -1,0 +1,49 @@
+#logo{
+    float: left;
+    height: 30px;
+    margin: 2px 5px;
+    filter: drop-shadow(3px 3px 1px #1B5E20);
+}
+
+.modal-body{
+    color: black;
+}
+
+body{
+    color: whitesmoke;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-header{
+    color: Black;
+}
+
+#option{
+    float: right;
+    margin-top: 0px;
+}
+
+#notifcont{
+    overflow: auto;
+    height: 600px;
+}
+
+p{
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.snnotif{
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 5px;
+    padding: 10px;
+    color: black;
+}
+
+.notif-p{
+    float: right;
+}
+

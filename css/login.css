@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'mamamo';
+  src: url('/res/Proxima-Nova.woff');
+}
+
+#login{
+	margin-top: 15%;
+	margin-left: 5%;
+	background-color: rgba(62,57,57,0.2);
+	height: 160px;
+	width: 90%;
+	border-radius: 10px;
+   filter: drop-shadow(3px 1px 3px #424242);
+}
+
+#login input{
+  color: white;
+	height: 35px;
+  padding: 3px;
+  margin: 10px 0px 0px 10px;
+	border-radius: 8px;
+	width: 92%;
+	background-color:  rgba(62, 57, 58, 0.6);
+  font-size: 16px;
+}
+
+#login #button{
+  background-color: #00C853;
+  width:  60px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+::placeholder{
+	font-size: 16px;
+	color: white;
+  font-family: 'mamamo';
+  font-weight: bold;
+}
+
+#name{
+	font-size: 1rem;
+	font-family: verdana;
+	top: 10px;
+	left: 5px;
+	position: relative;
+  color: #E0E0E0;
+}
+#container{
+  width: 92%;
+  margin: auto;
+  overflow: hidden;
+}
+
+#logo{
+  float: left;
+  height: 50px;
+   filter: drop-shadow(3px 3px 1px #1B5E20);
+}
+
+#brand{
+  float:left;
+  margin: auto 5 0 0 0;
+  color: #fff;
+   filter: drop-shadow(3px 3px 1px #1B5E20);
+}
+
+body{
+  margin: 0px;
+  padding: 0px;
+  background: linear-gradient(180deg, #00C853,#558B2F) fixed no-repeat;
+}

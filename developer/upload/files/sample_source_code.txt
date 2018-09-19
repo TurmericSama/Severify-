@@ -1,0 +1,63 @@
+Report sequence
+
+PAULO LOPERA(anchor)
+AIRA REBADOMIA(anchor)
+KELLY MARIANNE LYNN GALLARDO(news)
+DIANE SALIBA(new)
+PAOLO CARL BAUTISTA(trivia)
+JUNVIL PESIMO(commercial)
+DENNIS VARONA(news)
+DANIEL YALUNG(news)
+
+
+Display disclaimer
+(play the background sound)
+
+(Paulo): Good morning, Philippines! This is Pew News
+       : I'm Poppy Harlow
+(Aira) : and I'm Gloria Borger(pause 2 seconds)
+       : For todays Headlines!, "Church and State, establishes a working collaboration"?
+(Paulo): "Attempt to recover holy land, ended in failure!".
+(Aira) : "Big fire covers subdivision in Sta. Ana!". 
+(Paulo): "Thanks to the hero!".
+
+(Paulo): (First news intro)
+Intro:  St. Thomas Aquinas believed that the state, like the church, was a complete community, both of which, together with the larger community, should function to promote the common good. Kelly Gallardo on the details, Kelly... (calls kelly)
+
+(Paulo): 
+Intro: After two century of crusades, last Catholic outpost fell to failure. Considered as one of the important battles of  the period, the "Siege of Acre" now called the "Fall of Acre" laso lost their last stronghold -  The Kingdom of Jerusalem. Let's Hear the full story from Diane Saliba
+
+(Kelly returns from her report)
+(Aira) : For today's trivia let's hear it from Paolo Bautista, Paolo...(Paolo called and enters the scene).
+
+(return from Paolo)
+
+(Aira) : More news when Pew News returns...
+
+(Commercial Rolls in)
+
+(Paulo): Welcome back, 
+intro: A big fire covered a subdivision in Sta. Ana, Manila. Estimated 100 families are affected. But the light on this news is about a survivor who could have save one of the victim. Here’s Dennis for the whole story. 
+
+(comes back from dennis)
+
+(Aira) : A hero emerges from the accident earlier this morning at the expressway. Daniel Yalung Reporting... Daniel (calls denyel)
+
+(comes back from daniel)
+
+(both anchors): *talks something about the reports*
+
+(Paulo): And that had been the news in the last 24 hours.
+(Aira) : for more of the latest news visit our website at triple W dot pewnews dot com
+(Paulo): you can also check our multimedia accounts
+
+displays multimedia accounts on screen
+
+(Paulo): I'm Poppy Harlow..
+(Aira) : I'm Gloria Borger..
+
+(Both) : And this is pew news..
+
+exit
+
+

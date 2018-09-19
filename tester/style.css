@@ -1,0 +1,57 @@
+#brand{
+    float: left;
+    margin: auto 5 0 0 0;
+    filter: drop-shadow(3px 3px 1px #1B5E20);
+}
+
+#logo{
+    float: left;
+    height: 50px;
+    filter: drop-shadow(3px 3px 1px #1B5E20);
+}
+
+body{
+    background: linear-gradient(180deg, #00C853,#558B2F) fixed no-repeat;
+    color: whitesmoke;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-header{
+    color: Black;
+}
+
+#option{
+    float: right;
+    margin-top: 0px;
+}
+
+#notifcont{
+    overflow-y: scroll;
+    height: 100vh;
+background-color: rgba(255, 255, 255, 0.7);
+    padding-top: 20px;
+}
+
+p{
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.snnotif{
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 5px;
+    padding: 10px;
+    color: black;
+}
+
+#base{
+    background-color: rgba(255, 255, 255, 0.7);
+    padding-top: 20px;
+}
+
+.notif-p{
+    float: right;
+}
