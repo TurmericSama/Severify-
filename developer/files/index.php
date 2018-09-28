@@ -1,3 +1,11 @@
+
+<?php
+
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,15 +74,10 @@
     </nav>
 
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-3">
-				</div>
-				<div class="col-md-9">
-					<div id="projtable" class="container">
-					</div>
-				</div>
-			</div>
-		</div>
+            <div class="row  col-sm-12 col-md-9 col-xl-10 col-lg-10" id="projtable">
+
+            </div>    
+        </div>
 
 
 		
@@ -107,10 +110,3 @@
 
 
 	  </script>
-
-<?php
-
-session_start();
-
-
-?>

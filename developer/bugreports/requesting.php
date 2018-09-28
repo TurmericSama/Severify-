@@ -17,7 +17,7 @@ $query = "select project_source, bug_id, bugname, bugdesc, replicate, tester, da
 $result =  $con->query( $query );
 if($result->num_rows !== 0){
 foreach($result as $row){
-echo "<div class=\"snnotif border\" onClick=\"document.getElementById('id').value = '" . $row['project_source'] . "'; getit();\" data-toggle=\"modal\" data-target=\"#myModal\">";
+echo "<div class=\"snnotif border\" onClick=\"document.getElementById('id').value = '" . $row['bug_id'] . "'; getit();\">";
         echo "<span class=\"badge badge-primary notif-p\">Bug Report</span>";
         echo "<span id=\"bugname\">" . $row['bugname'] . "</span>"; 
         echo "<p>" .$row['bugdesc'] . "</p>"; 

@@ -77,9 +77,10 @@ require("../../con/db.php");
 
         <div class="container-fluid">
             <div class="row">
-                <div class="w-75 container">
-						<div id="notifcont" style="height:300px; overflow: auto;">
-						</div>
+                <div class="col-sm-12 col-md-3" id="notifcont" style="overflow-y: auto;">
+                </div>
+                <div class="col-sm-12 col-md-9" id="reportbody" style="overflow-y: auto;">
+
                 </div>
             </div>
         </div>
@@ -113,15 +114,15 @@ require("../../con/db.php");
 <script>
 
 function getit(){
-		var projid = $('#id');
-		proj_id = projid.val();
-		var modalbody = $('.modal-body');
+		var bugid = $('#id');
+		bug_id = bugid.val();
+		var modalbody = $('#reportbody');
 		$.ajax({
 			type: 'GET',
 			url: 'bugreports/modalreq.php',
 			dataType: 'html',
 			data: {
-				proj_id: proj_id
+				bug_id: bug_id
 			},
 			success: function(newcontent){
 				modalbody.html(newcontent);

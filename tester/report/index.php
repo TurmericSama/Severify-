@@ -15,22 +15,17 @@ function randomNumber($length){
 
 $length = 10;
 
-
 	if($_POST){
 		$id = "BUG".randomNumber($length);	
-  	$name = $_POST['bugname'];
+  		$name = $_POST['bugname'];
 		$project_source = $_POST['projsel'];
 		$desc = $_POST['bugdesc'];
 		$rep = $_POST['rep'];
 		$severity = $_POST['severity'];
 		$founder = $_SESSION['user_id'];
 
-			$coder = "select coder from project_t where proj_id = $project_source";
-			$result = $con->query($coder);
-			$row = $result->fetch_row();
-
-			$query = "insert into bugs_t(bug_id,project_source,bugdesc,replicate,bugname,severity,coder,tester)
-			values ('$id',$project_source,'$desc','$rep','$name','$severity',$row[0],$founder)";
+			$query = "insert into bugs_t(bug_id,project_source,bugdesc,replicate,bugname,severity,tester)
+			values ('$id',$project_source,'$desc','$rep','$name','$severity',$founder)";
 			$update = "update project_t set status = \"debugging\" where proj_id = $project_source";
 			if($con->query($query)&&$con->query($update)){
 				
@@ -39,90 +34,15 @@ $length = 10;
 			die();
 				}
 
-				$errors = array();
-				$uploadedFiles = array();
 				$extension = array("jpeg","jpg","png");
 				$bytes = 1024;
 				$KB = 1024;
 				$totalBytes = $bytes * $KB * 25;
 				$UploadFolder = "images";
 				 
-				$counter = 0;
-				 
-				foreach($_FILES["upfile"]["tmp_name"] as $key=>$tmp_name){
-						$temp = $_FILES["upfile"]["tmp_name"][$key];
-						$name = $_FILES["upfile"]["name"][$key];
-						 
-						if(empty($temp))
-						{
-								break;
-						}
-						 
-						$counter++;
-						$UploadOk = true;
-						 
-						if($_FILES["upfile"]["size"][$key] > $totalBytes)
-						{
-								$UploadOk = false;
-								array_push($errors, $name." file size is larger than the 25 MB.");
-						}
-						 
-						$ext = pathinfo($name, PATHINFO_EXTENSION);
-						if(in_array($ext, $extension) == false){
-								$UploadOk = false;
-								array_push($errors, $name." is invalid file type.");
-						}
-						 
-						if(file_exists($UploadFolder."/".$name) == true){
-								$UploadOk = false;
-								array_push($errors, $name." file is already exist.");
-						}
-						 
-						if($UploadOk == true){
-								move_uploaded_file($temp,$UploadFolder."/".$name);
-								array_push($uploadedFiles, $UploadFolder."/".$name);
-				
-								$query1 = "select project_source from bugs_t where bug_id = \"$id\"";
-								$result = $con->query($query1);
-								$row = $result->fetch_row();
-				
-								foreach($uploadedFiles as $files){
-								$query2 = "insert into image (proj_id, bug_id, dir) values ($row[0],'$id','$files')";
-								if($con->query($query2)){
-									
-									}
-								}
-						}
-				}
-				
-				if($counter>0){
-						if(count($errors)>0)
-						{
-								echo "<b>Errors:</b>";
-								echo "<br/><ul>";
-								foreach($errors as $error)
-								{
-										echo "<li>".$error."</li>";
-								}
-								echo "</ul><br/>";
-						}
-						 
-						if(count($uploadedFiles)>0){
-																 
-								echo "<script>alert('$uploadedFiles. file(s) are successfully uploaded);</script>";
-						}                               
-				}
-				else{
-						echo "Please, Select file(s) to upload.";
-				}
 
 
 			}
-			
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -247,7 +167,7 @@ $length = 10;
                             </select>
                 </div>
 				<div id="filediv" class="input-group mb-3">
-								<input type="file" id ="files" name="upfile[]" class="form-control" multiple="multiple"/>
+								<input type="file" id ="files" name="upfile[]" class="form-control" required>
 							</div>
                 <div class="input-group mb-3">
                     <input class="btn btn-success btn-block" type="submit" value="Send Bug Report">

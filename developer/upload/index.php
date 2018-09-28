@@ -112,9 +112,12 @@ if($_POST){
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Select Project</span>
                                     </div>
-									<select name="select" id="select" class="form-control" onchange="sel();" required>
-									</select>
+									<select name="select" id="select" class="form-control" onchange="sel(); infoappend();" required>
+                                    </select>
 								</div>
+                                <div id="projinfo">
+
+                                    </div>
 								<div class="form-group">
 									<input type="file" name="fileinput" class="form-control" required/>
 								</div>
@@ -129,6 +132,28 @@ if($_POST){
 </html>
 
 <script>
+
+    $('#select').blur(function(){
+        var proj_id = $('#select').val();
+        if(proj_id == "none" || proj_id == null){
+            $('.info').remove();
+        } else{
+        $.ajax({
+            type: "POST",
+            url: "../developer/upload/projinfo.php",
+            data: {
+                proj_id: proj_id
+            },
+            success: function (response) {
+                $('#projinfo').html(response);
+            }
+        });
+        }
+    });
+
+
+
+
 	 function fill() {
             var $newps = $('#select');
 
@@ -144,25 +169,22 @@ if($_POST){
             });
         };
 		
-		function infoappend(){
-			var sel = $('#select').val();
-
-			$('#select').change(function(){
-				$.ajax({
-                type: 'GET',
-                url: '/developer/upload/requesting2.php',
-                dataType: 'html',
+        
+        $('#select').blur(function() { 
+            var proj_id = $(this).val();
+            
+            $.ajax({
+                type: "POST",
+                url: "../developer/upload/projinfo.php",
                 data: {
-					proj_id : sel
-				},
-                success: function(newContent){
-                   $('#select').append(newContent);
-                   console.log(newContent);
-                }           
+                    proj_id: proj_id
+                },
+                success: function (response) {
+                    $('#projinfo').html(response);
+                }
             });
-			});
-
-		};
+            
+        });
         
         function sel(){
            var selectv = $('#select').val();

@@ -26,6 +26,10 @@ if(!$_SESSION['user_type'] == 1 ){
         body{
             background-color: grey;
         }
+        .snnotif{
+            margin: 3px;
+            padding: 4px;
+        }
     </style>
     <!--end of head-->
 </head>
@@ -78,11 +82,13 @@ if(!$_SESSION['user_type'] == 1 ){
     <input type="text" name="id" id="id" hidden>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-3" id="memlist">
-                <h1>Team Members</h1>
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                <h1 class="text-light">Team Members</h1>
+                <div  id="memlist">
+                </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9">
-                <h1>Info</h1>
+                <h1 class="text-light">Info</h1>
                 <div id="info">
                 </div>
             </div>

@@ -17,7 +17,7 @@ $result =  $con->query( $query );
 
 if($result->num_rows == 0 ){
     
-echo "<option value=\"none\">There are no projects at this time</option>";
+echo "<option value=\"\">--There are no projects at this time--</option>";
 }
 else{
     

@@ -133,7 +133,7 @@ if($_POST){
                 <img src="../res/one.webp">
               </div>
               <div class="carousel-item">
-                <img src="../res/two.jpg" alt="Chicago">
+                <img src="../res/two.webp" alt="banner image 2">
               </div>
               <div class="carousel-item">
                 <img src="../res/three.webp">

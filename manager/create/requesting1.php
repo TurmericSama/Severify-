@@ -4,7 +4,7 @@ session_start();
 
 require("../../con/db.php");
 
-$query = "select user_id, userfname from user_t where user_type = 3";
+$query = "select user_id, userfname from user_t where user_type = 3 and workstat = \"Employed\"";
 
 
 echo "<option>--Select Tester--</option>";

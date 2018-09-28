@@ -190,7 +190,7 @@ if( $_POST){
             else if(prname.length < 6 && prname.length > 0 ){
                 $('#warning').html("<div class=\"alert alert-danger\">Project is too short!</div>");    
             } else{
-                $('#alert').remove();
+                $('.alert').remove();
             }
             });
         });

@@ -51,25 +51,16 @@
             </ul>
         </div>
     </nav>
-
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-9 col-xs-12 col-sm-12" id="projtable">
-					
-				</div>
-			</div>
-		</div>
-
-
-		
-
+    
+        <div class="row container-fluid col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="main">
+        </div>
 	</body>
 
 </html>
 
 	  <script>
 		function fill() {
-			var $projtable = $('#projtable');
+			var $projtable = $('#main');
 
 			$.ajax({
 				type: 'GET',
