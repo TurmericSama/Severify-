@@ -74,83 +74,49 @@ require("../../con/db.php");
         </div>
     </nav>
 
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12 col-md-3" id="notifcont" style="overflow-y: auto;">
-                </div>
-                <div class="col-sm-12 col-md-9" id="reportbody" style="overflow-y: auto;">
-
-                </div>
-            </div>
-        </div>
-        <div class="container">
-        <input type="text" name="id" id="id" hidden>
-  
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog modal-lg">
-    
-      <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-		            <h4 class="modal-title">Project Information</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                        <div class="modal-body">
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <input type="text" name="id" id="id" hidden>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-0 col-sm-0 col-md-3">
+                <h3 class="text-light">Bug Reports</h3>
+                <div  id="memlist">
                 </div>
             </div>
-      
+            <div class="col-xs-12 col-sm-12 col-md-9">
+                <div id="info">
+                </div>
+            </div>
         </div>
     </div>
-  
-</div>
-    </body>
 
-</html>
+
+    </body>
+    </html>
 
 <script>
 
-function getit(){
-		var bugid = $('#id');
-		bug_id = bugid.val();
-		var modalbody = $('#reportbody');
-		$.ajax({
-			type: 'GET',
-			url: 'bugreports/modalreq.php',
-			dataType: 'html',
-			data: {
-				bug_id: bug_id
-			},
-			success: function(newcontent){
-				modalbody.html(newcontent);
-				console.log(newcontent);
-			}
-			
-		});
-	}
+$(document).ready(function(){
+    $.ajax({
+        url: '../developer/bugreports/requesting.php',
+        method: 'POST',
+        success: function(data){
+            $('#memlist').html(data);
+        }
+    });
+});
 
+function nameclick(){
+    var bugid = $('#id').val();
+    $.ajax({
+        url: '../developer/bugreports/bug.php',
+        method: 'POST',
+        data:{
+            bug_id: bugid
+        },
+        success: function(data){
+            $('#info').html(data);
+        }
+    });
 
-	  function fill() {
-            var $newps = $('#notifcont');
-
-            $.ajax({
-                type: 'GET',
-                url: 'bugreports/requesting.php',
-                dataType: 'html',
-                data: $(this).serialize(),
-                success: function(newContent){
-                   $newps.html(newContent);
-                   console.log(newContent);
-                    // setTimeout("fill()", 1000);
-                }
-            });
-        };
-
-     $(document).ready(function(){
-       fill();
-     });
-
-  	</script>		
+}
+</script>

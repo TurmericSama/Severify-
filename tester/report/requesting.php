@@ -10,8 +10,7 @@ if(isset($con) && $con !== NULL){
 
    $userid =  $_SESSION['user_id'];
 
-$query = "select proj_id , coder, name from project_t where tester = $userid AND source is NOT NULL and status = \"testing\" order by date desc";
-
+$query = "select proj_id , coder, name from project_t where tester = '$userid' AND source is NOT NULL and status = \"testing\" order by date desc";
 
 $result =  $con->query( $query );
 

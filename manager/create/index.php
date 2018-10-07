@@ -10,18 +10,30 @@ if(!$_SESSION['user_type'] == 1){
 function submit(){
     require("../../con/db.php");
 
+    function randomNumber($length){
+        $result = '';
+        for($i = 0; $i < $length; $i++){
+            $result .= mt_rand(0,9);
+        }
+        return $result;
+    };
+    
+    $length = 10;
+    $proj_id = "PRJ".randomNumber($length);
     $projname = $_POST['prname'];
     $dev = $_POST['dsel'];
     $tes = $_POST['tsel'];
     $desc = $_POST['desc'];
     $cby = $_SESSION['user_id'];
 
-    $query = "insert into project_t (name, pdesc, coder, tester , creator) values ('$projname','$desc',$dev,$tes,$cby)";
+    
+
+    $query = "insert into project_t (proj_id,name, pdesc, coder, tester , creator) values ('$proj_id','$projname','$desc','$dev','$tes','$cby')";
     if($con->query( $query )){
         echo "<script>alert(\"Successful\")</script>";
     }
     else{
-        echo "<script>alert(\"submit has failed\")</script>";
+        echo "<script>alert(\"Project Creation has failed\")</script>";
     }
 
 }
@@ -79,9 +91,9 @@ if( $_POST){
                                 <a class="dropdown-item" href="#">View Profiles</a>
                             </div> -->
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Reports</a>
-                </li>
+                </li> -->
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options

@@ -131,12 +131,24 @@ if($_POST){
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img src="../res/one.webp">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Caption One</h5>
+                    <p>Caption Description</p>
+                </div>
               </div>
               <div class="carousel-item">
                 <img src="../res/two.webp" alt="banner image 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Caption Two</h5>
+                    <p>Caption Description</p>
+                </div>
               </div>
               <div class="carousel-item">
                 <img src="../res/three.webp">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Caption Three</h5>
+                    <p>Caption Description</p>
+                </div>
               </div>
             </div>
             

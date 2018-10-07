@@ -11,7 +11,7 @@ if(isset($con) && $con !== NULL){
 
 $coder = $_SESSION['user_id'];
 
-$query = "select proj_id, name, pdesc, date from project_t where coder = ". $coder ." AND source is NULL";
+$query = "select proj_id, name, pdesc, date from project_t where coder = '". $coder ."' AND source is NULL";
 
 
 $result =  $con->query( $query );

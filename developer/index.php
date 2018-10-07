@@ -85,7 +85,7 @@ if(!$_SESSION['user_type'] == 2 ){
         </div>
     </div>
     <div class="container">
-            <input type="number" name="id" id="id" hidden>
+            <input type="text" name="id" id="id" hidden>
       
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog modal-lg">

@@ -67,7 +67,7 @@ session_start();
         </div>
 
         <div class="container">
-        <input type="number" name="id" id="id" hidden>
+        <input type="text" name="id" id="id" hidden>
   
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -129,7 +129,7 @@ session_start();
                 success: function(newContent){
                    $newps.html(newContent);
                    console.log(newContent);
-                    setTimeout("fill()", 1000);
+                    setTimeout("fill()", 5000);
                 }
             });
         };

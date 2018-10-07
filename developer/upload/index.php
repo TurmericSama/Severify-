@@ -10,25 +10,23 @@ if($_POST){
 
     $dir = "files/";
     $target = $dir . $_FILES['fileinput']['name'];
+    $proj_id = $_POST['select'];
 
-    if(move_uploaded_file($_FILES['fileinput']['tmp_name'], $target)) {
-        echo "<script>alert(\"File upload successful\")</script>";
-
-        $kwery = "insert into source ( dir, proj_id ) values ( \"". $target ."\", ". $_POST[ "select" ] ." )";
-        
-
-        if($con->query($kwery)){
-            $kwery = "select max( source_id ) from source";
-            $id = $con->query( $kwery )->fetch_row()[0];
-            $kwery = "select proj_id from source where source_id=". $id;
-            $proj_id = $con->query( $kwery )->fetch_row()[0];
-            $kwery = "update project_t set source=". $id .", status = 'testing' where proj_id=". $proj_id; 
-            $con->query( $kwery );
-        } else {
-            echo "<script>alert('Information supplied is incomplete, please try again.');</script>";
+    function randomNumber($length){
+        $result = '';
+        for($i = 0; $i < $length; $i++){
+            $result .= mt_rand(0,9);
         }
-    } else{
-            echo '<script> alert("File too big"); </script>';
+        return $result;
+    };
+    
+    $length = 10;
+    $source_id = "SRC".randomNumber($length);
+
+    $query = "insert into source (source_id, proj_id, source_type, dir) values ('$source_id','$proj_id','base','$target')";
+    $update = "update project_t set source= '". $source_id ."', status = 'testing' where proj_id= '". $proj_id."'";
+    if(move_uploaded_file($_FILES['fileinput']['tmp_name'], $target) && $con->query($query) && $con->query($update)){
+        echo "<script>alert('File Upload Successful')</script>";
     }
 }
 
@@ -107,7 +105,7 @@ if($_POST){
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">
                             <form action="#" method="POST" enctype="multipart/form-data">
-                                <h1 class="display-4">Upload Base File</h1>
+                                <h1 class="display-4 text-light">Upload Base File</h1>
 								<div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Select Project</span>
@@ -119,7 +117,7 @@ if($_POST){
 
                                     </div>
 								<div class="form-group">
-									<input type="file" name="fileinput" class="form-control" required/>
+									<input type="file" id="fileinput" name="fileinput" class="form-control" required/>
 								</div>
 								<div class="input-group">
 									<input type="submit" value="Submit File" id="selectbtn" class="btn btn-success btn-block" disabled>
@@ -133,30 +131,8 @@ if($_POST){
 
 <script>
 
-    $('#select').blur(function(){
-        var proj_id = $('#select').val();
-        if(proj_id == "none" || proj_id == null){
-            $('.info').remove();
-        } else{
-        $.ajax({
-            type: "POST",
-            url: "../developer/upload/projinfo.php",
-            data: {
-                proj_id: proj_id
-            },
-            success: function (response) {
-                $('#projinfo').html(response);
-            }
-        });
-        }
-    });
-
-
-
-
 	 function fill() {
             var $newps = $('#select');
-
             $.ajax({
                 type: 'GET',
                 url: '/developer/upload/requesting.php',
@@ -168,11 +144,28 @@ if($_POST){
                 }           
             });
         };
-		
         
-        $('#select').blur(function() { 
-            var proj_id = $(this).val();
-            
+     $(document).ready(function(){
+       fill();
+        
+        $('#select').blur(function () { 
+            var selectv = $('#select').val();
+           if(!selectv || selectv == "empty"){
+            $('#select').prop('disabled', true);  
+            $('#selectbtn').prop('disabled', true);
+            $('#fileinput').prop('disabled', true);
+            $('#projinfo').hide();
+           }
+           else if(selectv == "none"){
+            $('.alert').remove();
+            $('#selectbtn').prop('disabled', true);
+            $('#fileinput').prop('disabled',true);
+            $('#projinfo').hide();
+           }
+            else{
+            $('#selectbtn').prop('disabled', false);
+            $('#fileinput').prop('disabled', false);
+            $('#projinfo').show();
             $.ajax({
                 type: "POST",
                 url: "../developer/upload/projinfo.php",
@@ -183,21 +176,8 @@ if($_POST){
                     $('#projinfo').html(response);
                 }
             });
-            
-        });
-        
-        function sel(){
-           var selectv = $('#select').val();
-           if(!selectv || selectv == "none"){
-            $('#selectbtn').prop('disabled', true);
-           } else{
-            $('#selectbtn').prop('disabled', false);
            }
-        }
-
-
-     $(document).ready(function(){
-       fill();
+        });
      });
 
 </script>

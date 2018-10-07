@@ -13,7 +13,7 @@ if($_POST){
     if(move_uploaded_file($_FILES['fileinput']['tmp_name'], $target)) {
         echo "<script>alert(\"This worked\")</script>";
 
-        $kwery = "insert into source ( dir, proj_id ) values ( \"". $target ."\", ". $_POST[ "select" ] ." )";
+        $kwery = "insert into source ( dir, proj_id, source_type) values ( \"". $target ."\", ". $_POST[ "select" ] ." 'patch')";
         
 
         if($con->query($kwery)){
@@ -112,8 +112,10 @@ if($_POST){
 									<select name="select" id="select" class="form-control" required>
 									</select>
 								</div>
+                                <div id="projinfo">
+                                </div>
 								<div class="input-group mb-3">
-									<input type="file" name="fileinput" class="form-control" required/>
+									<input type="file" id="fileinput" name="fileinput" class="form-control" required/>
 								</div>
 								<div class="input-group">
 									<input id="submit" type="submit" value="Submit File" class="btn btn-success btn-block"/>
@@ -128,7 +130,6 @@ if($_POST){
 <script>
 	 function fill() {
             var $newps = $('#select');
-
             $.ajax({
                 type: 'GET',
                 url: '/developer/patches/requesting.php',
@@ -141,38 +142,37 @@ if($_POST){
             });
         };
 		
-		function infoappend(){
-			var sel = $('#select').val();
-
-			$('#select').change(function(){
-				$.ajax({
-                type: 'GET',
-                url: '/developer/upload/requesting2.php',
-                dataType: 'html',
-                data: {
-					proj_id : sel
-				},
-                success: function(newContent){
-                   $('#select').append(newContent);
-                   console.log(newContent);
-                }           
-            });
-			});
-
-		};
-        function sel(){
-            $("#select").bind("change", function() {
-                if(!$('#select').val()){
-                    alert($('#select').val());
-                }    
-            });
-        }
-
-
-     $(document).ready(function(){
+    $(document).ready(function(){
        fill();
-	   infoappend();
-        sel();
+       $('#select').blur(function () { 
+            var selectv = $('#select').val();
+           if(!selectv || selectv == "empty"){
+            $('#select').prop('disabled', true);  
+            $('#submit').prop('disabled', true);
+            $('#fileinput').prop('disabled', true);
+            $('#projinfo').hide();
+           }
+           else if(selectv == "none"){
+            $('.alert').remove();
+            $('#submit').prop('disabled', true);
+            $('#fileinput').prop('disabled',true);
+           }
+            else{
+            $('#submit').prop('disabled', false);
+            $('#fileinput').prop('disabled', false);
+            $('#projinfo').show();
+            $.ajax({
+                type: "POST",
+                url: "../developer/patches/requesting2.php",
+                data: {
+                    proj_id: proj_id
+                },
+                success: function (response) {
+                    $('#projinfo').html(response);
+                }
+            });
+           }
+        });
      });
 
 </script>

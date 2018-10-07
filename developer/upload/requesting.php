@@ -10,14 +10,12 @@ if(isset($con) && $con !== NULL){
 
 $query = "select proj_id , name from project_t where coder = \"" . $_SESSION["user_id"] . "\" AND source is NULL order by date desc";
 
-
-
 $result =  $con->query( $query );
 
 if($result ->num_rows == 0){
-    echo "<option value=\"\">No Projects at this time</option>";    
+    echo "<option value=\"empty\">No Projects at this time</option>";    
 } else{
-    echo "<option value=\"\">--Select Project--</option>";
+    echo "<option value=\"none\">--Select Project--</option>";
 }
 
 foreach($result as $row){

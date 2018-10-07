@@ -10,11 +10,23 @@ if(!$_SESSION['user_type'] == 1 ){
 function post(){
     require("../../con/db.php");
 
+
+    function randomNumber($length){
+	    $result = '';
+	    for($i = 0; $i < $length; $i++){
+		    $result .= mt_rand(0,9);
+	    }
+	    return $result;
+    };
+
+    $length = 4;
+    $user_id = "U".randomNumber($length);
     $name = $_POST['name'];
     $username =  $_POST['username'];
     $position = $_POST['psel'];
     
-    $query = "insert into user_t (username, userfname, user_type) values ('$username','$name',$position)";
+
+    $query = "insert into user_t (user_id,username, userfname, user_type) values ('$user_id','$username','$name',$position)";
     if($con->query($query)){
         echo "<script>alert('Account Creation successful')</script>";
     } else{
@@ -76,9 +88,9 @@ if($_POST){
                                 <a class="dropdown-item" href="#">View Profiles</a>
                             </div> -->
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Reports</a>
-                </li>
+                </li> -->
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options

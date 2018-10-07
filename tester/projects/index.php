@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,11 +61,55 @@
     
         <div class="row container-fluid col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="main">
         </div>
+
+        <div class="container">
+        <input type="text" name="id" id="id" hidden>
+  
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+		            <h4 class="modal-title">Project Information</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                        <div class="modal-body">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+      
+        </div>
+    </div>
+  
+    </div>
+
 	</body>
 
 </html>
 
 	  <script>
+          function getit(){
+		var projid = $('#id');
+		proj_id = projid.val();
+		var modalbody = $('.modal-body');
+		$.ajax({
+			type: 'GET',
+			url: '/tester/projects/modalreq.php',
+			dataType: 'html',
+			data: {
+				proj_id: proj_id
+			},
+			success: function(newcontent){
+				modalbody.html(newcontent);
+				console.log(newcontent);
+			}
+			
+		});
+	}
+
 		function fill() {
 			var $projtable = $('#main');
 
@@ -70,7 +121,7 @@
 				success: function(newContent){
 				   $projtable.html(newContent);
 				   console.log(newContent);
-					setTimeout("fill()", 1000);
+					setTimeout("fill()", 5000);
 				}
 			});
 			
@@ -83,9 +134,3 @@
 
 	  </script>
 
-<?php
-
-session_start();
-
-
-?>

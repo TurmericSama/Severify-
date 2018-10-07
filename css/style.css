@@ -9,12 +9,6 @@
     color: black;
 }
 
-body{
-    color: whitesmoke;
-    align-items: center;
-    overflow: hidden;
-}
-
 .modal-header{
     color: Black;
 }
@@ -24,10 +18,6 @@ body{
     margin-top: 0px;
 }
 
-#notifcont{
-    overflow: auto;
-    height: 600px;
-}
 
 p{
     width: 400px;
@@ -38,12 +28,20 @@ p{
 
 .snnotif{
     background-color: rgba(255, 255, 255, 0.5);
-    margin: 5px;
-    padding: 10px;
+    padding: 2px 5px;
     color: black;
+    margin-top: 2px;
 }
 
 .notif-p{
     float: right;
 }
 
+.rowheight{
+    height: 91vh;
+}
+
+.scrollable{
+    overflow-y: auto;
+    height: 100%;
+}

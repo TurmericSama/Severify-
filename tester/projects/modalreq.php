@@ -3,10 +3,10 @@
 session_start();
 
 
-require("../con/db.php");
+require("../../con/db.php");
 $proj_id = $_GET['proj_id'];
 
-$query = "select p.proj_id, p.name,p.pdesc, u.userfname, p.coder, p.tester, p.date from project_t as p inner join user_t as u on p.creator = u.user_id where proj_id = '".$proj_id."'";
+$query = "select p.proj_id, p.name,p.pdesc, u.userfname, p.coder, p.tester, p.date from project_t as p inner join user_t as u on p.creator = u.user_id where proj_id = '$proj_id'";
 $result = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($result)){
     $query1 = "select u.userfname from project_t as p join user_t as u on p.coder = u.user_id where p.proj_id='" . $row['proj_id'] . "' and coder='" . $row['coder'] . "'";
@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_array($result)){
                     echo "<span>Project Description: </span>". $row['pdesc'] ."<br>";
                     echo "<span>Project Manager: </span>". $row['userfname'] ."<br>";
                     echo "<span>Developer: </span>". $row1['userfname'] ."<br>";
-                    echo "<span>Tester: </span>". $row['userfname'] ."<br>";
+                    echo "<span>Tester: </span>". $row2['userfname'] ."<br>";
                 echo "</div>";
             }
         }

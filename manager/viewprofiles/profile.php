@@ -4,7 +4,7 @@ require('../../con/db.php');
 
 $userid = $_POST['userid'];
 
-$query = "select u.userfname, t.type_title, u.workstat, u.date from user_t as u join user_type as t on u.user_type = t.type_id where user_id = ".$userid."";
+$query = "select u.userfname, t.type_title, u.workstat, u.date from user_t as u join user_type as t on u.user_type = t.type_id where user_id = '".$userid."'";
 
 $result = $con->query($query);
 $row = $result->fetch_array();

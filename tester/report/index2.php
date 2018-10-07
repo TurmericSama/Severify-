@@ -19,16 +19,16 @@ $length = 10;
 		$id = "BUG".randomNumber($length);
 		$project_source = $_POST['projsel'];
 		$desc = $_POST['bugdesc'];
+		$rep = $_POST['rep'];
 		$severity = $_POST['severity'];
         $founder = $_SESSION['user_id'];
-        $dir = "../../tester/report/images/";
-        $filename = $_FILES['upfile']['name'];
-        $target = $dir . $filename;
+        $dir = "files/";
+        $target = $dir . $_FILES['upfile']['name'];
 
-			$query = "insert into bugs_t(bug_id,proj_id,bugdesc,replicate,severity,tester)
-			values ('$id','$project_source','$desc','$target','$severity','$founder')";
-			$update = "update project_t set status = 'debugging' where proj_id = '$project_source'";
-			if(move_uploaded_file($_FILES['upfile']['tmp_name'], $target) && $con->query($query) && $con->query($update)){
+			$query = "insert into bugs_t(bug_id,project_source,bugdesc,replicate,bugname,severity,tester)
+			values ('$id',$project_source,'$desc','$rep','$severity',$founder)";
+			$update = "update project_t set status = \"debugging\" where proj_id = $project_source";
+			if($con->query($query)&&$con->query($update)){
                 echo "<script> alert('bug report sent')</script>";
 			} else {
 			echo "<script> alert('error sending report')</script>";
@@ -121,8 +121,8 @@ $length = 10;
     </nav>
 	<div class="container-fluid">
         <div class="row pt-2">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6-center col-xl-9-center">            
-                <form action="#" method="post" enctype="multipart/form-data">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-9">            
+                <form action="" method="post">
                 <h1 class="display-5 text-light">Create Bug Report</h1>
 
                 <div class="input-group input-group-md mb-3">  
@@ -138,6 +138,12 @@ $length = 10;
                         </div>
                     <textarea style="resize:none;" class="form-control" name="bugdesc" id="bugdesc" cols="50" rows="7" placeholder="Description"></textarea>
                 </div>
+				<div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-md">How to Replicate</span>
+                        </div>
+                    <textarea style="resize:none;" class="form-control" name="rep" id="rep" cols="50" rows="7" placeholder="Description"></textarea>
+                </div>
 				<div class="input-group input-group-md mb-3">  
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Severity</span>
@@ -149,7 +155,7 @@ $length = 10;
                             </select>
                 </div>
 				<div id="filediv" class="input-group mb-3">
-								<input type="file" id ="files" name="upfile" class="form-control" required>
+								<input type="file" id ="files" name="upfile[]" class="form-control" required>
 							</div>
                 <div class="input-group mb-3">
                     <input class="btn btn-success btn-block" type="submit" value="Send Bug Report">

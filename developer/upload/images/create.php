@@ -1,13 +1,3 @@
-<?php
-
-session_start();
-
-if(!$_SESSION['user_type'] == 1 ){
-	header("Location: login");
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,19 +7,13 @@ if(!$_SESSION['user_type'] == 1 ){
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--links and scripts-->
-    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="../../js/validation.js"></script>
     <style>
         body{
             background-color: grey;
-        }
-        .snnotif{
-            margin: 3px;
-            padding: 4px;
         }
     </style>
     <!--end of head-->
@@ -45,81 +29,75 @@ if(!$_SESSION['user_type'] == 1 ){
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../manager">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="manager.html">Home<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../manager/create">Create Project</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="create.html">Create Project</a>
                 </li>
-                <li class="nav-item active dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Manager People
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../manager/addpeople">Create Acccount</a>
+                            <a class="dropdown-item" href="#">Create Acccount</a>
                             <a class="dropdown-item" href="#">View Profiles</a>
                             <!-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">View Profiles</a>
                             </div> -->
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                         <a class="nav-link" href="#">Reports</a>
-                </li> -->
-            
-
-                <div class="dropdown float-right">
+                </li>
+                <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" id="user" href="#">Current User</a>
+                            <a class="dropdown-item" href="#">Current User</a>
                             <a class="dropdown-item" href="#">Settings</a>
                             <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="../logout">Logout</a>
+                                <a class="dropdown-item text-danger" href="login.html">Logout</a>
                             </div>
                 </div>
             </ul>
         </div>
     </nav>
-    <input type="text" name="id" id="id" hidden>
+    
     <div class="container-fluid">
-        <div class="row rowheight">
-            <div class="col-md-4 scrollable" id="memlist">
-                <h1 class="text-light display-4">People</h1>
+        <div class="row pt-2 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-9">
+            <h1 class="display-5 text-light">Create Project</h1>
+            <div class="input-group input-group-sm mb-3">  
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Project Name</span>
+                </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Project Name here.." maxlength="25">
             </div>
-            <div class="col-md-8">
-                <h1 class="text-light display-4">Details</h1>
+            <div class="input-group input-group-sm mb-3">  
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Select Developer</span>
+                    </div>
+                        <select class="form-control" name="devsel" id="devsel">
+                            <option selected disabled value="">--Developers--</option>
+                            <option value="">Developer name</option>
+                        </select>
+            </div>
+            <div class="input-group input-group-sm mb-3">  
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Select Tester</span>
+                    </div>
+                        <select class="form-control" name="devsel" id="devsel">
+                            <option selected disabled value="">--Testers--</option>
+                            <option value="">Developer name</option>
+                        </select>
+            </div>
+            <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Project Description</span>
+                    </div>
+                <textarea style="resize:none;" class="form-control" name="desc" id="desc" cols="50" rows="10" placeholder="Description"></textarea>
             </div>
         </div>
     </div>
-    </body>
-    </html>
 
-<script>
-
-$(document).ready(function(){
-    $.ajax({
-        url: '../manager/viewprofiles/requesting.php',
-        method: 'POST',
-        success: function(data){
-            $('#memlist').html(data);
-        }
-    });
-
-    finduser();
-});
-
-function nameclick(){
-    var userid = $('#id').val();
-    $.ajax({
-        url: '../manager/viewprofiles/profile.php',
-        method: 'POST',
-        data:{
-            userid: userid
-        },
-        success: function(data){
-            $('#info').html(data);
-        }
-    });
-
-}
-</script>
+</body>
+</html>
