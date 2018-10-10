@@ -6,14 +6,9 @@
     
     require("../con/db.php");
     
-    if(isset($con) && $con !== NULL){
-        //do nothing
-       }
-    
     $tester = $_SESSION['user_id'];
-    
-    $query = "select proj_id, name, pdesc, date from project_t where tester = '$tester' AND status = \"testing\" order by date desc ";
-    
+ 
+    $query = "select proj_id, name, pdesc, date from project_t where tester = '$tester' AND status = 'testing' order by date desc ";
     
     $result =  $con->query( $query );
     if($result->num_rows !== 0){

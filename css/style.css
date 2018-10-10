@@ -5,6 +5,9 @@
     filter: drop-shadow(3px 3px 1px #1B5E20);
 }
 
+.navbar{
+    border-bottom: #558B2F 2px solid;
+}
 .modal-body{
     color: black;
 }

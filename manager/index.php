@@ -22,7 +22,7 @@ if(!$_SESSION['user_type'] == 1 ){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="../../js/validation.js"></script>
+    <script src="../js/validation.js"></script>
     <style>
         body{
             background-color: grey;
@@ -52,7 +52,7 @@ if(!$_SESSION['user_type'] == 1 ){
                     Manager People
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" id="user" href="../manager/addpeople">Create Acccount</a>
+                            <a class="dropdown-item" href="../manager/addpeople">Create Acccount</a>
                             <a class="dropdown-item" href="../manager/viewprofiles">View Profiles</a>
                             <!-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">View Profiles</a>
@@ -64,11 +64,11 @@ if(!$_SESSION['user_type'] == 1 ){
             
 
                 <div class="dropdown float-right">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle user" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" id="user" href="#">Current User</a>
+                            <a class="dropdown-item" id="user" href="#">Profile</a>
                             <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="../logout">Logout</a>
                             </div>
@@ -125,7 +125,6 @@ if(!$_SESSION['user_type'] == 1 ){
                 },
                 success: function(newcontent){
                     modalbody.html(newcontent);
-                    console.log(newcontent);
                 }
                 
             });
@@ -142,13 +141,12 @@ if(!$_SESSION['user_type'] == 1 ){
                  data: $(this).serialize(),
                  success: function(newContent){
                  $projtable.html(newContent);
-                    console.log(newContent);
                      setTimeout("fill()", 10000);
                  }			
              });
         };
     
-            $("document").ready(function(){
+            $(document).ready(function(){
             fill();
             getit();
             finduser();

@@ -17,7 +17,8 @@ function finduser(){
         type: "POST",
         url: "../../js/username.php",
         success: function (response) {
-            $('#user').html(response);
+            $('.user').html(response);
+            console.log(response);
         }
     });
 }

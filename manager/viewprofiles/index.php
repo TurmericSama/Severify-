@@ -67,12 +67,11 @@ if(!$_SESSION['user_type'] == 1 ){
             
 
                 <div class="dropdown float-right">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle user" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" id="user" href="#">Current User</a>
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Profile</a>
                             <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="../logout">Logout</a>
                             </div>
@@ -88,6 +87,9 @@ if(!$_SESSION['user_type'] == 1 ){
             </div>
             <div class="col-md-8">
                 <h1 class="text-light display-4">Details</h1>
+                <div id="info">
+
+                </div>
             </div>
         </div>
     </div>

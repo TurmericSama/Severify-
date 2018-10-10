@@ -25,18 +25,37 @@ $length = 10;
         $filename = $_FILES['upfile']['name'];
         $target = $dir . $filename;
 
-			$query = "insert into bugs_t(bug_id,proj_id,bugdesc,replicate,severity,tester)
-			values ('$id','$project_source','$desc','$target','$severity','$founder')";
+        if($_POST['severity'] == "finished"){
+            $chk = "select p.proj_id, b.bug_id from project_t as p left outer join bugs_t as b on p.proj_id = b.proj_id where p.proj_id = '$project_source'";
+            $result = $con->query($chk);
+            $row = $result->fetch_array();
+            if($row['bug_id'] == null){
+                $query = "insert into bugs_t(bug_id,proj_id,bugdesc,tester,bstatus) values ('$id','$project_source','Finished','$founder','fixed')";
+                if($con->query($query)){
+                    echo "<script>alert('Bug Report sent')</script>";
+                }else{
+                    echo "<script>alert('first query error')</script>";
+                }
+            }else{
+                $query = "insert into bugs_t(bug_id,proj_id,bugdesc,tester,bstatus) values ('$id','$project_source','Finished','$founder','fixed')";
+                $update = "update project_t set status = 'fixed' where proj_id = '$project_source'";
+                if($con->query($query) && $con->query($update)){
+                    echo "<script>alert('Bug Report sent')</script>";
+                }else{
+                    echo "<script>alert('Second query error')</script>";
+                }
+            }
+        }else{
+            $query = "insert into bugs_t(bug_id,proj_id,bugdesc,replicate,severity,tester) values ('$id','$project_source','$desc','$target','$severity','$founder')";
 			$update = "update project_t set status = 'debugging' where proj_id = '$project_source'";
 			if(move_uploaded_file($_FILES['upfile']['tmp_name'], $target) && $con->query($query) && $con->query($update)){
                 echo "<script> alert('bug report sent')</script>";
 			} else {
-			echo "<script> alert('error sending report')</script>";
-			die();
-				}
-
-			
+			    echo "<script> alert('third query error')</script>";
+			    die();
+            }
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +72,7 @@ $length = 10;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/validation.js"></script>
     <style>
         body{
             background-color: grey;
@@ -106,12 +126,11 @@ $length = 10;
                     <a class="nav-link" href="../tester/report">Report a bug</a>
                 </li>
                 <div class="dropdown float-right">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle user" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Options
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Current User</a>
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Profile</a>
                             <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="../../login">Logout</a>
                             </div>
@@ -132,11 +151,11 @@ $length = 10;
                             <select class="form-control" name="projsel" id="projsel" required>
                             </select>
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3" id="bugdiv">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-md">Bug Description</span>
                         </div>
-                    <textarea style="resize:none;" class="form-control" name="bugdesc" id="bugdesc" cols="50" rows="7" placeholder="Description"></textarea>
+                    <textarea style="resize:none;" class="form-control" id="bugdesc" name="bugdesc"  cols="50" rows="7" placeholder="Description"></textarea>
                 </div>
 				<div class="input-group input-group-md mb-3">  
                         <div class="input-group-prepend">
@@ -146,13 +165,14 @@ $length = 10;
 								<option value="low">low</option>
 								<option value="medium">medium</option>
 								<option value="high">high</option>
+                                <option value="finished">none</option>
                             </select>
                 </div>
 				<div id="filediv" class="input-group mb-3">
 								<input type="file" id ="files" name="upfile" class="form-control" required>
 							</div>
                 <div class="input-group mb-3">
-                    <input class="btn btn-success btn-block" type="submit" value="Send Bug Report">
+                    <input class="btn btn-success btn-block" id="subbtn" type="submit" value="Send Bug Report">
                 </div>
                 </form>
             </div>
@@ -172,44 +192,44 @@ $length = 10;
 			   dataType: 'html',
 			   data: $(this).serialize(),
 			   success: function(newContent){
-				  $newps.append(newContent);
+				  $newps.html(newContent);
 				  console.log(newContent);
-			   }           
+                  setTimeout("fill()", 3000);
+			   }
 		   });
+           
 	   };
 
 	$(document).ready(function(){
 	  fill();
+      finduser();
 	});
 
 </script>
 
 <script>
 $(document).ready(function() {
-  if (window.File && window.FileList && window.FileReader) {
-    $("#files").on("change", function(e) {
-      var files = e.target.files,
-        filesLength = files.length;
-      for (var i = 0; i < filesLength; i++) {
-        var f = files[i]
-        var fileReader = new FileReader();
-        fileReader.onload = (function(e) {
-          var file = e.target;
-          $("<span class=\"pip\">" +
-            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-            "<br/><span class=\"remove\">Remove image</span>" +
-            "</span>").insertAfter("#filediv");
-          $(".remove").click(function(){
-            $(this).parent(".pip").remove();
-            $('#files').val();
-          });
-        });
-        fileReader.readAsDataURL(f);
-      }
-    });
-  } else {
-    alert("Your browser doesn't support to File API")
-  }
+
+  $('#severity').blur(function () { 
+    var sev = $(this).val();
+    if(sev == "finished"){
+        var yn = confirm('You aknowledge that this project is free of errors?');
+        if(yn == true){
+            $('#subbtn').prop('value', 'Project Complete');
+            $('#bugdiv').hide();
+            $('#filediv').hide();
+            $('#files').removeAttr('required');
+            $('#bugdesc').removeAttr('required');
+            alert('Project complete');
+        }
+    }else{
+            $('#subbtn').prop('value', 'Send Bug Report');
+            $('#bugdiv').show();
+            $('#filediv').show();
+        }
+  });
+
+
 
 });
 

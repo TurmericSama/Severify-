@@ -13,7 +13,7 @@ $result =  $con->query( $query );
 if($result->num_rows !== 0){
     foreach($result as $row){
         echo "<div class=\"snnotif border\" onClick=\"document.getElementById('id').value = $(this).find('#userid').val(); nameclick();\">";
-        echo "<span id=\"userfname\">" . $row['bug_id'] . "</span>";  
+        echo "<span id=\"userfname\">" . $row['name'] . "</span>";  
         echo "<input id=\"userid\" hidden value=\"". $row['bug_id'] ."\"/>";
     echo "</div>";
     }
