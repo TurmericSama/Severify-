@@ -14,6 +14,8 @@
 
 .modal-header{
     color: Black;
+    background-color: #66BB6A;
+    border-radius: 10%;
 }
 
 #option{

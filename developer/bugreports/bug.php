@@ -1,3 +1,11 @@
+
+<style>
+span{
+    font-weight: bold;
+}
+
+</style>
+
 <?php
 
 session_start();
@@ -21,8 +29,8 @@ while ($row = mysqli_fetch_array($result)){
                     echo "<span>Project Name: </span>". $row['name'] ."<br>";
                     echo "<span>Bug ID: </span>". $row['bug_id'] ."<br>";
                     echo "<span>Bug Description: </span>". $row['bugdesc'] ."<br>";
-                    echo "<span>Project Developer: </span>". $row['userfname'] ."<br>";
-                    echo "<span>Project Tester: </span>". $row1['userfname'] ."<br>";
+                    echo "<span>Project Developer: </span>". $row1['userfname'] ."<br>";
+                    echo "<span>Project Tester: </span>". $row['userfname'] ."<br>";
                     echo "<div class=\"embed-responsive embed-responsive-16by9\">";
                     echo "<video controls class=\"embed-responsive-item\" src=". $row['replicate'] ." allowfullscreen></video>";
                     echo "</div>";

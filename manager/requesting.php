@@ -23,7 +23,7 @@ echo "<table class=\"table table-hover table-responsive\" id=\"tab\">";
                     
 $userid = $_SESSION['user_id'];
 
-$query = "select p.proj_id, p.name, u.userfname, p.date, p.coder, p.tester, p.status from project_t as p inner join user_t as u on p.creator = u.user_id where p.creator = '".$_SESSION['user_id']."'";
+$query = "select p.proj_id, p.name, u.userfname, p.date, p.coder, p.tester, p.status from project_t as p inner join user_t as u on p.creator = u.user_id where p.creator = '".$_SESSION['user_id']."'order by p.date desc";
 $result = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($result)){
     $query1 = "select u.userfname from project_t as p join user_t as u on p.coder = u.user_id where p.proj_id= '" . $row['proj_id'] . "' and coder= '" . $row['coder'] . "'";

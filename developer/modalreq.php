@@ -21,7 +21,7 @@ while ($row = mysqli_fetch_array($result)){
                     echo "<span>Project Description: </span>". $row['pdesc'] ."<br>";
                     echo "<span>Project Manager: </span>". $row['userfname'] ."<br>";
                     echo "<span>Developer: </span>". $row1['userfname'] ."<br>";
-                    echo "<span>Tester: </span>". $row['userfname'] ."<br>";
+                    echo "<span>Tester: </span>". $row2['userfname'] ."<br>";
                 echo "</div>";
             }
         }

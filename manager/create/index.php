@@ -83,7 +83,7 @@ if( $_POST){
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Manager People
+                    Manage People
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="../manager/addpeople">Create Acccount</a>
@@ -200,7 +200,7 @@ if( $_POST){
             });
             }
             else if(prname.length < 6 && prname.length > 0 ){
-                $('#warning').html("<div class=\"alert alert-danger\">Project is too short!</div>");    
+                $('#warning').html("<div class=\"alert alert-danger\">Project name is too short!</div>");    
             } else{
                 $('.alert').remove();
             }

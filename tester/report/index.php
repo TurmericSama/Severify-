@@ -39,6 +39,7 @@ $length = 10;
             }else{
                 $query = "insert into bugs_t(bug_id,proj_id,bugdesc,tester,bstatus) values ('$id','$project_source','Finished','$founder','fixed')";
                 $update = "update project_t set status = 'fixed' where proj_id = '$project_source'";
+                echo "<script>$('#files').removeAttr('required');</script>";
                 if($con->query($query) && $con->query($update)){
                     echo "<script>alert('Bug Report sent')</script>";
                 }else{
@@ -106,6 +107,7 @@ $length = 10;
     </style>
     <!--end of head-->
 	</head>
+    
 
 	<body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -194,7 +196,6 @@ $length = 10;
 			   success: function(newContent){
 				  $newps.html(newContent);
 				  console.log(newContent);
-                  setTimeout("fill()", 3000);
 			   }
 		   });
            

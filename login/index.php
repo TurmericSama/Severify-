@@ -72,12 +72,13 @@ if($_POST){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body{
-            background-color: grey;
+            background-color: white;
         }
         .carousel-inner img{
-            height: 100%;
+            height: 50% !important;
             width: 100%;
         }
         .carousel-caption{
@@ -86,9 +87,29 @@ if($_POST){
             transform: translateY(-50%);
             text-shadow: 1px 1px 10px #000;
         }
+        .carousel-caption h1{
+            font-size: 500%;
+            text-shadow: 1px 1px 10px #000;
+        }
         .jumbotron {
             padding: 1rem;
             border-radius: 0;
+        }
+        .padding{
+            padding: 2rem .3rem 2rem .3rem
+        }
+        .fa-html5{
+            color: #e54d26;
+        }
+        .fa-css3{
+            color: #2163af;
+        }
+        .fa-bold{
+            color: #563d7c;
+        }
+        .fa-bold, .fa-css3, .fa-html5{
+            font-size: 4em;
+            margin: 1rem;
         }
     </style>
     <!--end of head-->
@@ -117,60 +138,134 @@ if($_POST){
             </form>
         </div>
     </nav>
-    
-    <div id="demo" class="carousel slide" data-ride="carousel">
 
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
-            
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../res/one.webp">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Caption One</h5>
-                    <p>Caption Description</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="../res/two.webp" alt="banner image 2">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Caption Two</h5>
-                    <p>Caption Description</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="../res/three.webp">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Caption Three</h5>
-                    <p>Caption Description</p>
-                </div>
-              </div>
+  <div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        <li data-target="#slides" data-slide-to="1"></li>
+        <li data-target="#slides" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="../res/one.jpg" alt="imageOne">
+            <div class="carousel-caption">
+                <h1 class="display-1">Severify</h1>
             </div>
-            
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </a>
-          </div>
-          
+        </div>
+        <div class="carousel-item">
+            <img src="../res/two.jpg" alt="imageOne">
+        </div>
+        <div class="carousel-item">
+            <img src="../res/three.jpg" alt="imageOne">
+        </div>
+    </div>
+    </div>  
+    <a class="carousel-control-prev" href="#slides" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#slides" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+ 
     <div class="container-fluid padding">
         <div class="row jumbotron">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
                 <h1>Severify</h1>
-                <p class=" text-justify">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse assumenda, facilis maxime rem tempora ipsam delectus ab distinctio libero sint dignissimos, dolore commodi saepe cupiditate perferendis aperiam consequuntur excepturi. Cupiditate esse provident eius doloremque numquam itaque nemo repellendus accusamus, nostrum porro obcaecati? Nam possimus quae mollitia consectetur earum consequatur tempore asperiores voluptatibus, odio labore, dolorem ipsam sit maxime totam incidunt consequuntur quas impedit veritatis nesciunt distinctio nostrum! Inventore, tenetur?
+                <p class="text-justify">A simple, yet reliable project management platform to focused on creating, storing, relaying project information and files for the people involved.
                 </p>
             </div>
         </div>  
     </div>
+
+    <div class="container-fluid padding" style="background-color: #E8EAF6">
+        <div class="row padding">
+            <div class="col-md-3 col-sm-6 col-xs-4">
+                <div class="card">
+                    <img class="card-img-top" src="../res/gab.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Gabrielle Celestino</h5>
+                        <p class="card-text">
+                            Project Manager <br>
+                            <span class="text-secondary">Polytechnic University of the Philippines</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-4">
+                <div class="card">
+                    <img class="card-img-top" src="../res/zen.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Sweetzen Aandrea Jimenez</h5>
+                        <p class="card-text">
+                            Quality Assurance <br>
+                            <span class="text-secondary">Polytechnic University of the Philippines</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-4">
+                <div class="card">
+                    <img class="card-img-top" src="../res/mel.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Melrose Iglesia</h5>
+                        <p class="card-text">
+                            Lead Documenter <br>
+                            <span class="text-secondary">Polytechnic University of the Philippines</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-4">
+                <div class="card">
+                    <img class="card-img-top" src="../res/pau.jpg" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Paulo Lopera</h5>
+                        <p class="card-text">
+                            Full Stack Developer <br>
+                            <span class="text-secondary">Polytechnic University of the Philippines</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid padding">
+        <div class="row text-center padding">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <i class="fa fa-html5"></i>
+                <h3>HTML5</h3>
+                <p>Built with the latest version of HTML, HTML5</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <i class="fa fa-css3"></i>
+                <h3>CSS3</h3>
+                <p>Built with the latest version of CSS, CSS3</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <i class="fa fa-bold"></i>
+                <h3>BOOTSTRAP</h3>
+                <p>Built with the latest version of Bootstrap, Bootstrap 4.1</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <img style="padding: 0; margin: 1rem;" height="11%" src="../res/jq.png" alt="">
+                <h3>JQUERY</h3>
+                <p>Built with the latest version of JQuery, JQuery 3.3.1</p>
+            </div>
+        </div>
+    </div>
     
+<figure>
+   <img style="position: fixed;" width="100%" src="../res/one.jpg" alt="">
+</figure>
+  
+    <footer>
+        <div class="container-fluid">
+            <div class="col-md-4">
+                <h1 style="color: green;">Severify</h1>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
 

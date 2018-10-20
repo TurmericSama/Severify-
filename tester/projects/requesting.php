@@ -26,12 +26,12 @@ echo "</thead>";
 echo "<tbody>";
 
 $userid = $_SESSION['user_id'];
-$query = "select p.proj_id, p.name, u.userfname, p.date, p.coder, p.tester, p.status, s.dir from project_t as p inner join user_t as u on p.creator = u.user_id inner join source as s on p.proj_id = s.proj_id where p.tester = '".$_SESSION['user_id']."'";
+$query = "select p.proj_id, p.name, u.userfname, p.date, p.coder, p.tester, p.status, s.dir from project_t as p join user_t as u on p.creator = u.user_id inner join source as s on p.proj_id = s.proj_id where p.tester = '".$_SESSION['user_id']."' and s.source_type = 'base' order by p.date desc";
+echo $userid;
 $result = mysqli_query($con, $query);
 if($result->num_rows == 0){
     echo "<tr><td class=\"text-light\">It's lonely here...</td></tr>";
-}
-
+}else{
 while ($row = mysqli_fetch_array($result)){
 $query1 = "select u.userfname from project_t as p join user_t as u on p.coder = u.user_id where p.proj_id='" . $row['proj_id'] . "' and coder='" . $row['coder'] . "'";
 $result1 = mysqli_query($con, $query1);
@@ -55,7 +55,7 @@ echo "</tr>";
 echo "</tbody>";
 echo "</table>";
 
-
+}
 	
 ?>
 

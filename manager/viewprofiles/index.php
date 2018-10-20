@@ -79,6 +79,7 @@ if(!$_SESSION['user_type'] == 1 ){
             </ul>
         </div>
     </nav>
+    
     <input type="text" name="id" id="id" hidden>
     <div class="container-fluid">
         <div class="row rowheight">
@@ -86,7 +87,6 @@ if(!$_SESSION['user_type'] == 1 ){
                 <h1 class="text-light display-4">People</h1>
             </div>
             <div class="col-md-8">
-                <h1 class="text-light display-4">Details</h1>
                 <div id="info">
 
                 </div>

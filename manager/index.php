@@ -68,7 +68,7 @@ if(!$_SESSION['user_type'] == 1 ){
                     Options
                     </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" id="user" href="#">Profile</a>
+                            <a class="dropdown-item" id="user" href="../profile">Profile</a>
                             <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="../logout">Logout</a>
                             </div>
